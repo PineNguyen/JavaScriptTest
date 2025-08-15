@@ -10,13 +10,7 @@ const students = [
 
 // 1. Thêm học sinh
 function addStudent(id, userName, math, english, gender) {
-   // id+=1;
-   // let userName = prompt(`Nhập tên`);
-   // let math = parseFloat(prompt(`Nhập điểm Toán`));
-   // let english = parseFloat(prompt(`Nhập điểm Anh`));
-   // let gender = prompt(`Giới tính (male/female)`);
-
-   students.push(id,userName, math, english, gender);
+   students.push({id, name, math, english, gender});
 }
 
 // 2. Tính điểm trung bình của từng học sinh
@@ -54,6 +48,7 @@ function countStudentGender() {
 
 // 5. Tìm học sinh có điểm toán cao nhất
 function bestMath() {
+   let tmp = 0;
    let maxPoint = 0;
    students.forEach(function(student) {
       if(student.math > maxPoint) {
@@ -79,6 +74,7 @@ function passAndFail() {
 
 // 7. Tìm học sinh giỏi nhất môn tiếng Anh
 function bestEnglish() {
+   let tmp = 0;
    let maxPoint = 0;
    students.forEach(function(student) {
       if(student.english > maxPoint) {
@@ -107,12 +103,13 @@ function checkPoint() {
 
 // 10. Tìm danh sách học sinh có điểm Toán lớn hơn điểm Anh
 function mathGreaterThanEnglish() {
-   const listStudentEnglishBetter = [];
+   const listStudentMathBetter = [];
    students.forEach(function(student) {
       if(student.english < student.math) {
-         listStudentEnglishBetter.push(student);
+         listStudentMathBetter.push(student);
       }
    });
+   return listStudentMathBetter;
 }
 
 // 11. Kiểm tra xem tất cả học sinh nữ có điểm trung bình > 6 không
@@ -147,6 +144,7 @@ function maleAndFemale() {
 
 // 13. Tìm học sinh có tổng điểm cao nhất
 function bestPoint() {
+   let tmp = 0;
    let maxPoint = 0;
    students.forEach(function(student) {
       if((student.english +student.math) > maxPoint) {
@@ -195,9 +193,9 @@ function countStudent() {
       else {
          yeu+=1;
       }
-      console.log("Hoc sinh gioi: ", gioi);
-      console.log("Hoc sinh kha: ", kha);
-      console.log("Hoc sinh trungBinh: ", trungBinh);
-      console.log("Hoc sinh yeu: ", yeu);
    });
+   console.log("Hoc sinh gioi: ", gioi);
+   console.log("Hoc sinh kha: ", kha);
+   console.log("Hoc sinh trungBinh: ", trungBinh);
+   console.log("Hoc sinh yeu: ", yeu);
 }
