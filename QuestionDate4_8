@@ -1,0 +1,144 @@
+1. Phân biệt setTimeout vs setInterval
+Cả hai hàm setTimeout và setInterval đều nhằm mục đích lập lịch thực thi 
+chương trình sau một khoảng thời gian. Nhưng với setTimeout thì hàm chỉ 
+chạy một lần rồi kết thúc, còn setInterval sẽ lặp lại sau mỗi khoảng thời 
+gian đã set trước đó. Ta có thể dừng hàm setTimeout với hàm clearTimeout 
+và dừng hàm setInterval với hàm clearInterval.
+
+2. Hiện tượng callback hell
+Callback hell là hiện tượng có quá nhiều hàm callback lồng nhau,
+dẫn đến mã nguồn trở nên phức tạp, khó đọc và khó bảo trì.
+
+3. Phân biệt let và const
+- let: kiểu khai báo biến này có phạm vi block, đồng thời let chỉ cho 
+phép cập nhật lại giá trị của biến chứ không cho phép khai báo lại biến đó.
+- const: kiểu khai báo biến này cũng có phạm vi block, đối với const 
+nếu kiểu biến là primitive thì ta không thể cập nhật hay khai báo lại 
+giá trị mới. Nhưng với trường hợp kiểu biến là reference thì ta không 
+thể cập nhật hay khai báo lại giá trị của biến, nhưng vẫn có thể cập 
+nhật lại giá trị cho thuộc tính của biến đó.
+Đồng thời cả hai kiểu khai báo này đều được hoisting, nhưng khác với 
+var, sẽ không có giá trị được khởi tạo.
+
+4. Phân biệt forEach, filter, map, every, some, for thường
+- forEach: với vòng lặp forEach thì sẽ duyệt tất cả các phần tử từ 
+đầu đến cuối, không trả về giá trị và cũng không thể dừng lại giữa chừng.
+- filter: trả về một mảng chứa các phần tử thỏa mãn điều kiện
+- map: trả về một mảng chứa các phần tử đã được biến đổi
+- every: kiểm tra tất cả các phần tử thỏa mãn điều kiện, trả về giá trị 
+true/false sau khi kiểm tra lần lượt các phần tử, hàm sẽ dừng lại khi 
+gặp phần tử không thỏa điều kiện
+- some: kiểm tra ít nhất một phần tử thỏa mãn điều kiện, trả về giá trị 
+true/false, hàm sẽ dừng lại khi gặp một phần tử thỏa mãn điều kiện.
+- for thường: duyệt các phần tử tùy ý, có thể dừng thực hiện giữa 
+chừng (bằng break hay continue), hàm sẽ trả về hoặc không trả về tùy 
+theo người lập trình.
+
+5. Phân biệt địa chỉ của biến và giá trị
+- Địa chỉ của biến là vị trí của vùng nhớ nơi mà biến đó được lưu trữ, 
+mỗi biến trong chương trình đều chỉ có một địa chỉ riêng
+- Giá trị của biến là giá trị thực tế mà biến đang lưu trữ 
+
+6. Lỗi reference object mà dev hay gặp là lỗi gì? minh họa
+- Lỗi reference object mà dev thường hay gặp đó là "object reference
+not set to an instance of an object", khi sử dụng một đối tượng hay 
+một object nào đó mà nó chưa được khởi tạo thì lúc này giá trị của nó 
+sẽ là NULL, và khi gọi một object đang mang giá trị NULL thì exception 
+này sẽ được thông báo.
+
+7. Call, bind, apply
+Cả ba phương thức này đều nhằm mục đích thao tác với giá trị this 
+của một hàm, và gọi hàm đó với một đối tượng khác làm ngữ cảnh.
+- Call: được sử dụng để gọi hàm với một this cụ thể và các đối số được 
+truyền riêng lẻ
+function.call(thisArg, arg1, arg2,...)
+- Apply: cũng tương tự như Call, nhưng các đối số được truyền vào dưới 
+dạng mảng.
+function.apply(thisArg, [argsArray]);
+- Bind: không gọi hàm ngay lập tức, thay vào đó tạo ra một hàm mới với 
+this đã được cố định và các tham số ban đầu.
+function.bind(thisArg, arg1, arg2,...)
+
+8. Javascript có bao nhiêu kiểu dữ liệu
+Javascript có 2 kiểu dữ liệu: kiểu dữ liệu nguyên thủy (primitive data types) 
+và kiểu dữ liệu tham chiếu (reference data types)
+- Primitive data types bao gồm:
++ Number
++ String
++ Boolean
++ NULL
++ Undefined
++ BigInt
+
+- Reference data types bao gồm:
++ Object
+
+9. prototype là gì
+Dùng để chỉ một cơ chế cho phép các object kế thừa các thuộc 
+tính và phương thức từ các object khác. 
+Có 2 loại là:
+- Prototype của hàm: Prototype của hàm là object instance mà sẽ 
+trở thành prototype cho tất cả các object được tạo bằng cách sử 
+dụng hàm này làm constructor.
+- Prototype của object: Prototype của object là object instance mà 
+object được kế thừa từ đó.
+
+10. Trình bày các phương pháp để khởi tạo object
+- Sử dụng từ khóa new
+- Sử dụng literal, khởi tạo object trực tiếp bằng cách sử dụng dấu {} và gán các thuộc tính
+- Sử dụng object.create()
+
+11. Trình bày các phương pháp để clone object
+- Sao chép nông: 
++ Sử dụng toán tử ... (Spread Operator): Trong JavaScript, toán tử ... có thể được sử dụng để tạo một bản sao nông của một object.
++ Sử dụng Object.assign(): Phương thức Object.assign() cũng tạo ra một bản sao nông.
+    const originalObject = { a: 1, b: { c: 2 } };
+    const shallowCopy = Object.assign({}, originalObject);
+
+- Sao chép sâu:
++ Sử dụng JSON.parse(JSON.stringify()): Đây là một cách phổ biến 
+để tạo bản sao sâu. Nó chuyển đổi object thành một chuỗi JSON, 
+sau đó chuyển đổi chuỗi đó trở lại thành một object mới.
++ Sử dụng thư viện bên thứ ba, ví dụ Lodash: Thư viện như Lodash 
+cung cấp các hàm như _.cloneDeep() để tạo bản sao sâu một cách 
+an toàn và hiệu quả hơn, hỗ trợ nhiều loại dữ liệu hơn so với 
+JSON.parse(JSON.stringify()).
+
+- Các phương pháp khác:
++ Sử dụng vòng lặp
++ Sử dụng phương thức clone() trong Java
+
+13. Toán tử == và === khác và giống nhau như thế nào? Switch case là so sánh == hay ===
+Cả hai toán tử đều dùng để so sánh
+- Toán tử == sẽ tự ép kiểu nếu kiểu khác nhau
+- Toán tử === không ép kiểu
+Trong Switch-case sử dụng toán tử ===
+
+14. Sự khác nhau giữa require và import?
+Sự khác biệt chính giữa require và import nằm ở hệ thống module 
+mà chúng sử dụng. require thuộc về hệ thống module CommonJS, thường 
+được sử dụng trong Node.js, đặc biệt trong các dự án cũ hơn. 
+Ngược lại, import là một phần của hệ thống module ES6, được sử dụng 
+rộng rãi trong cả phát triển phía máy chủ và phía giao diện người 
+dùng, đặc biệt trong các dự án mới và các framework như React hoặc Vue. 
+
+15. Output của đoạn code sau ?
+function test() {
+    return
+    {
+      a: 'b'
+    }
+}
+console.log(test());
+
+Output của đoạn code sau là "undefined"
+Vì JavaScript có cơ chế Automatic Semicolon Insertion (ASI), nên khi 
+viết return xuống dòng thì JavaScript sẽ tự động điền thêm dấu ";" 
+vào ngay sau return, nên giá trị trả về sẽ là undefined thay vì object.
+
+16. [] == []. Kết quả của phép so sánh này, vì sao?
+Kết quả trả về là false, vì mỗi cặp ngoặc [] sẽ tạo ra một đối 
+tượng mới trong vùng nhớ, nên khi so sánh == thì hai vùng nhớ khác 
+nhau nên giá trị sẽ trả về là false.
+
+
