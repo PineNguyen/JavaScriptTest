@@ -4,7 +4,7 @@ const pool = require('../config/db');
 class studentController {
     //Thêm một đối tượng Sinh viên mới
     // thông tin của Student sẽ được lấy tại 'req.body' dưới dạng JSon
-    async create(req, res, next) {
+    async createStudent(req, res, next) {
         const {name, email, age} = req.body;
         try {
         const [result] = await pool.query(
@@ -19,7 +19,7 @@ class studentController {
 
     //Hiển thị tất cả Student trong cơ sở dữ liệu
     // sử dụng truy vấn SELECT * để lấy tất cả Student trong bảng
-    async showAll(req, res, next) {
+    async showAllStudent(req, res, next) {
         try {
             const [rows] = await pool.query("SELECT * FROM students");
             res.json(rows);
@@ -30,7 +30,7 @@ class studentController {
 
     //Tương tự showAll, nhưng chỉ hiển thị một Student có ID giống với request
     //sử dụng truy vấn SELECT * với điều kiện WHERE id = req.params.id
-    async showOne(req, res, next) {
+    async showOneStudent(req, res, next) {
         try {
             const [rows] = await pool.query("SELECT * FROM students WHERE id = ?", [req.params.id]);
             if(rows.length === 0) return res.status(404).send("Không tìm thấy dữ liệu");
@@ -42,7 +42,7 @@ class studentController {
 
     //Hàm này sẽ cập nhật thông tin của Student mà người dùng yêu cầu
     //Sử dụng truy vấn UPDATE để cập nhật thông tin mới mà người dùng yêu cầu trong req.body
-    async update(req, res, next) {
+    async editStudent(req, res, next) {
         const {name, email, age} = req.body;
         try {
             const [result] = await pool.query(
@@ -57,7 +57,7 @@ class studentController {
 
     //Hàm này sẽ xóa Student mà người dùng yêu cầu
     //Sử dụng truy vấn DELETE để xóa Student có Id giống req.params.id trong bảng Student
-    async delete(req, res, next) {
+    async deleteStudent(req, res, next) {
         try {
             const [result] = await pool.query("DELETE FROM students WHERE id = ?", [req.params.id]);
             if(result.effectedRows === 0) return res.status(404).send("Không tìm thấy dữ liệu");

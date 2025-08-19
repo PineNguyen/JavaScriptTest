@@ -4,7 +4,7 @@ const Student = require('../models/Student');
 class studentController {
     //Tạo một đối tượng Student mới
     // thông tin của Student sẽ được lấy tại 'req.body'
-    async create(req, res, next) {
+    async createStudent(req, res, next) {
         try {
             await Student.create(req.body);
             res.status(201).json(req.body);
@@ -15,7 +15,7 @@ class studentController {
 
     //Hiển thị tất cả Student trong cơ sở dữ liệu, 
     //sử dụng hàm find() để lấy tất cả các phần tử trong Student
-    async showAll(req, res, next) {
+    async showAllStudent(req, res, next) {
         try {
             const student = await Student.find();
             res.json(student);
@@ -26,7 +26,7 @@ class studentController {
 
     //Tương tự showAll, nhưng chỉ hiển thị một Student có ID giống với request
     //Id sẽ được lấy thông qua 'req.params.id'
-    async showOne(req, res, next) {
+    async showOneStudent(req, res, next) {
         try {
             const student = await Student.findById(req.params.id);
             if(!student) return res.status(404).send("Không tìm thấy dữ liệu");
@@ -39,7 +39,7 @@ class studentController {
    //Hàm này sẽ cập nhật thông tin của Student mà người dùng yêu cầu
     //Hàm findByIdAndUpdate() sẽ lấy Student có cùng id req.params.id
     //sau đó cập nhật thông tin mới dựa trên req.body
-    async update(req, res, next) {
+    async editStudent(req, res, next) {
         try {
             const student = await Student.findByIdAndUpdate(req.params.id, req.body, {new: true});
             if(!student) return res.status(404).send("Không tìm thấy dữ liệu");
@@ -51,7 +51,7 @@ class studentController {
 
     //Hàm này sẽ xóa Student mà người dùng yêu cầu
     //Hàm findByIdAndDelete() sẽ xóa Student có Id giống req.params.id
-    async delete(req, res, next) {
+    async deleteStudent(req, res, next) {
         try {
             const student = await Student.findByIdAndDelete(req.params.id);
             if(!student) return res.status(404).send("No data found");

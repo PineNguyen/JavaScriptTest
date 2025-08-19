@@ -2,15 +2,20 @@ const controller = require('../app/controllers/studentController');
 const path = require('path');
 
 function route(app) {
-  app.post('/api/create', controller.create);
+  //CRUD
+  //Create
+  app.post('/api/createStudent', controller.createStudent);
 
-  app.get('/api/read', controller.showOne);
+  //Read
+  app.get('/api/showStudent', controller.showOneStudent);
 
-  app.get('/api/read/:id', controller.showAll);
+  app.get('/api/showStudent/:id', controller.showAllStudent);
 
-  app.put('/api/update/:id', controller.update);
+  //Update
+  app.put('/api/editStudent/:id', controller.editStudent);
 
-  app.delete('/api/delete/:id', controller.delete);
+  //Delete
+  app.delete('/api/deleteStudent/:id', controller.deleteStudent);
 }
 
 module.exports = route;
