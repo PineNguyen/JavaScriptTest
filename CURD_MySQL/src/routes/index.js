@@ -7,9 +7,9 @@ function route(app) {
     app.post('/api/createStudent', controller.createStudent);
 
     //Read
-    app.get('/api/showStudent', controller.showOneStudent);
+    app.get('/api/showStudent', controller.showAllStudent);
 
-    app.get('/api/showStudent/:id', controller.showAllStudent);
+    app.get('/api/showStudent/:id', controller.showOneStudent);
 
     //Update
     app.put('/api/editStudent/:id', controller.editStudent);
